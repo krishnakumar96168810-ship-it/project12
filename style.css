@@ -1,0 +1,1018 @@
+/* ==========================================
+   WEATHER APP
+   PART 2A
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:#ffffff;
+    background:#0f172a;
+}
+
+/* =============================
+   Animated Background
+============================= */
+
+.background{
+
+    position:fixed;
+    inset:0;
+    z-index:-2;
+
+    background:linear-gradient(
+        -45deg,
+        #2563eb,
+        #0ea5e9,
+        #6366f1,
+        #1e293b
+    );
+
+    background-size:400% 400%;
+
+    animation:bgMove 15s ease infinite;
+
+}
+
+.background::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:550px;
+    height:550px;
+
+    background:#60a5fa55;
+
+    border-radius:50%;
+
+    top:-120px;
+    left:-120px;
+
+    filter:blur(120px);
+
+}
+
+.background::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    background:#818cf855;
+
+    bottom:-100px;
+    right:-100px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+}
+
+@keyframes bgMove{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+/* =============================
+   Container
+============================= */
+
+.container{
+
+    width:min(1100px,92%);
+
+    margin:auto;
+
+    padding:40px 0 60px;
+
+}
+
+/* =============================
+   Header
+============================= */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.logo i{
+
+    font-size:38px;
+
+    color:#fbbf24;
+
+}
+
+.logo h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+#themeBtn{
+
+    width:55px;
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+
+    transition:.35s;
+
+}
+
+#themeBtn:hover{
+
+    transform:rotate(180deg);
+
+    background:#2563eb;
+
+}
+
+/* =============================
+   Hero
+============================= */
+
+.hero{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.hero h2{
+
+    font-size:44px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+    opacity:.9;
+
+}
+
+/* =============================
+   Weather Card
+============================= */
+
+.weather-card{
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(25px);
+
+    padding:35px;
+
+    border-radius:28px;
+
+    box-shadow:
+
+    0 15px 45px rgba(0,0,0,.25);
+
+}
+
+/* =============================
+   Search Box
+============================= */
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:30px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:17px;
+
+}
+
+.search-box input::placeholder{
+
+    color:#ddd;
+
+}
+
+.search-box button{
+
+    width:60px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:#2563eb;
+
+    transition:.3s;
+
+}
+
+.search-box button:hover{
+
+    transform:translateY(-3px);
+
+    background:#1d4ed8;
+
+}
+
+/* =============================
+   Weather Image
+============================= */
+
+.weather-image{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+
+}
+
+.weather-image img{
+
+    width:170px;
+
+    animation:floatIcon 3s ease-in-out infinite;
+
+}
+
+@keyframes floatIcon{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+/* =============================
+   Temperature
+============================= */
+
+#temperature{
+
+    text-align:center;
+
+    font-size:72px;
+
+    font-weight:700;
+
+}
+
+#cityName{
+
+    text-align:center;
+
+    margin-top:8px;
+
+    font-size:30px;
+
+}
+
+#description{
+
+    text-align:center;
+
+    margin-top:10px;
+
+    opacity:.9;
+
+    text-transform:capitalize;
+
+}
+/* ==========================================
+   WEATHER APP
+   PART 2B
+========================================== */
+
+/* =============================
+   WEATHER DETAILS
+============================= */
+
+.details{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    margin-top:35px;
+
+}
+
+.detail{
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:22px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.detail:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.detail i{
+
+    font-size:30px;
+
+    color:#38bdf8;
+
+    margin-bottom:15px;
+
+}
+
+.detail span{
+
+    display:block;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.detail small{
+
+    color:#ddd;
+
+    font-size:14px;
+
+}
+
+/* =============================
+   SUNRISE & SUNSET
+============================= */
+
+.sun-times{
+
+    margin-top:35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.sun-times div{
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:22px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.sun-times div:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.sun-times i{
+
+    font-size:34px;
+
+    color:#fbbf24;
+
+    margin-bottom:12px;
+
+}
+
+.sun-times span{
+
+    display:block;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.sun-times small{
+
+    color:#ddd;
+
+}
+
+/* =============================
+   FORECAST
+============================= */
+
+.forecast-title{
+
+    text-align:center;
+
+    margin:45px 0 25px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.forecast-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.forecast-card{
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.forecast-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.forecast-card img{
+
+    width:80px;
+
+    margin:10px auto;
+
+}
+
+.forecast-card h3{
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+.forecast-card p{
+
+    margin:5px 0;
+
+}
+
+.forecast-card .temp{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/* =============================
+   FOOTER
+============================= */
+
+footer{
+
+    text-align:center;
+
+    margin-top:45px;
+
+    color:#ddd;
+
+    font-size:15px;
+
+}
+
+/* =============================
+   INPUT FOCUS
+============================= */
+
+.search-box input:focus{
+
+    box-shadow:0 0 0 3px #38bdf8;
+
+}
+
+/* =============================
+   CUSTOM SCROLLBAR
+============================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0f172a;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#38bdf8;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#2563eb;
+
+}
+/* ==========================================
+   WEATHER APP
+   PART 2C
+========================================== */
+
+/* =============================
+   RESPONSIVE DESIGN
+============================= */
+
+/* Tablet */
+
+@media (max-width:992px){
+
+.container{
+
+width:95%;
+
+}
+
+.hero h2{
+
+font-size:36px;
+
+}
+
+.details{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+header{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.logo{
+
+justify-content:center;
+
+}
+
+.hero h2{
+
+font-size:30px;
+
+}
+
+.hero p{
+
+font-size:16px;
+
+}
+
+.search-box{
+
+flex-wrap:wrap;
+
+}
+
+.search-box input{
+
+width:100%;
+
+}
+
+.search-box button{
+
+flex:1;
+
+height:55px;
+
+}
+
+.weather-card{
+
+padding:22px;
+
+}
+
+.details{
+
+grid-template-columns:1fr;
+
+}
+
+.sun-times{
+
+grid-template-columns:1fr;
+
+}
+
+.forecast-container{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+#temperature{
+
+font-size:56px;
+
+}
+
+#cityName{
+
+font-size:24px;
+
+}
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+.container{
+
+width:94%;
+
+}
+
+.hero h2{
+
+font-size:24px;
+
+}
+
+.hero p{
+
+font-size:14px;
+
+}
+
+.forecast-container{
+
+grid-template-columns:1fr;
+
+}
+
+.weather-image img{
+
+width:130px;
+
+}
+
+#temperature{
+
+font-size:46px;
+
+}
+
+.logo h1{
+
+font-size:26px;
+
+}
+
+}
+
+/* =============================
+   DARK MODE
+============================= */
+
+body.dark{
+
+background:#020617;
+
+color:#ffffff;
+
+}
+
+body.dark .background{
+
+background:linear-gradient(
+-45deg,
+#020617,
+#0f172a,
+#111827,
+#000000
+);
+
+}
+
+body.dark .weather-card,
+body.dark .detail,
+body.dark .sun-times div,
+body.dark .forecast-card{
+
+background:rgba(15,23,42,.75);
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+body.dark input{
+
+background:rgba(255,255,255,.08);
+
+color:white;
+
+}
+
+/* =============================
+   FADE ANIMATION
+============================= */
+
+.container{
+
+animation:fadeIn .8s ease;
+
+}
+
+@keyframes fadeIn{
+
+0%{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* =============================
+   FLOATING WEATHER CARD
+============================= */
+
+.weather-card{
+
+animation:floatCard 5s ease-in-out infinite;
+
+}
+
+@keyframes floatCard{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/* =============================
+   BUTTON EFFECTS
+============================= */
+
+button{
+
+transition:.35s;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+}
+
+button:active{
+
+transform:scale(.96);
+
+}
+
+/* =============================
+   TEXT SELECTION
+============================= */
+
+::selection{
+
+background:#38bdf8;
+
+color:#fff;
+
+}
+
+/* =============================
+   LOADER
+============================= */
+
+.loader{
+
+display:none;
+
+margin:25px auto;
+
+width:45px;
+
+height:45px;
+
+border:5px solid rgba(255,255,255,.2);
+
+border-top:5px solid #38bdf8;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* =============================
+   DISABLED BUTTON
+============================= */
+
+button:disabled{
+
+opacity:.5;
+
+cursor:not-allowed;
+
+}
+
+/* =============================
+   END OF STYLE.CSS
+============================= */

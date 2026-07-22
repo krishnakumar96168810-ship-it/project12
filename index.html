@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Weather</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+<i class="fa-solid fa-cloud-sun"></i>
+<h1>Weather App by K.K.Rao</h1>
+</div>
+
+<div class="header-buttons">
+
+<button id="themeBtn">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h2>Real-Time Weather</h2>
+
+<!-- <p>Get live weather forecasts anywhere in the world.</p> -->
+
+</section>
+
+<div class="weather-card">
+
+<div class="search-box">
+
+<input
+type="text"
+id="cityInput"
+placeholder="Search City...">
+
+<button id="searchBtn">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
+<button id="locationBtn">
+
+<i class="fa-solid fa-location-crosshairs"></i>
+
+</button>
+
+<button id="unitBtn">
+
+°C
+
+</button>
+
+</div>
+
+<div id="loader" class="loader"></div>
+
+<div class="weather-image">
+
+<img
+id="weatherIcon"
+src="https://openweathermap.org/img/wn/01d@4x.png"
+alt="Weather">
+
+</div>
+
+<h1 id="temperature">
+
+--°C
+
+</h1>
+
+<h2 id="cityName">
+
+Search a City
+
+</h2>
+
+<p id="description">
+
+Weather Description
+
+</p>
+
+<div class="details">
+
+<div class="detail">
+
+<i class="fa-solid fa-temperature-half"></i>
+
+<span id="feelsLike">
+
+--
+
+</span>
+
+<small>Feels Like</small>
+
+</div>
+
+<div class="detail">
+
+<i class="fa-solid fa-droplet"></i>
+
+<span id="humidity">
+
+--
+
+</span>
+
+<small>Humidity</small>
+
+</div>
+
+<div class="detail">
+
+<i class="fa-solid fa-wind"></i>
+
+<span id="wind">
+
+--
+
+</span>
+
+<small>Wind Speed</small>
+
+</div>
+
+<div class="detail">
+
+<i class="fa-solid fa-gauge-high"></i>
+
+<span id="pressure">
+
+--
+
+</span>
+
+<small>Pressure</small>
+
+</div>
+
+</div>
+
+<div class="sun-times">
+
+<div>
+
+<i class="fa-solid fa-sun"></i>
+
+<span id="sunrise">
+
+--:--
+
+</span>
+
+<small>Sunrise</small>
+
+</div>
+
+<div>
+
+<i class="fa-solid fa-moon"></i>
+
+<span id="sunset">
+
+--:--
+
+</span>
+
+<small>Sunset</small>
+
+</div>
+
+</div>
+
+</div>
+
+<section class="forecast-section">
+
+<h2>
+
+5-Day Forecast
+
+</h2>
+
+<div
+id="forecast"
+class="forecast-container">
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+Made with ❤️ using OpenWeatherMap API
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
